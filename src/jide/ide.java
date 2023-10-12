@@ -124,7 +124,7 @@ public class ide extends javax.swing.JFrame {
                 {
                     if(wordR == after || String.valueOf(text.charAt(wordR)).matches("\\W"))
                     {
-                        if(text.substring(wordL, wordR).matches("(\\W)*(programa|procedimiento|funcion|ent|flot|car|cad|booleano|imprimir|leer|si|entonces|sn|para|incremento|decremento|paso|verdadero|falso)"))
+                        if(text.substring(wordL, wordR).matches("(\\W)*(int|float|char)"))
                         {
                             setCharacterAttributes(wordL, wordR - wordL, attblue, false);
                         }
@@ -615,58 +615,59 @@ public class ide extends javax.swing.JFrame {
                             JTPError.setText(obs.error);
                         }
                         break;
-                    case ID:
-                    case Numero:
-                    case cadena:
-                    case caracter:
+                    case id:
+                        resultado += id + "\n";
+                        break;
+                    case num:
+                        resultado += num + "\n";
+                        break;
                     case ent:
+                         resultado += lexer.lexeme + "\n";
+                        obs.Analisis("int", c.linea + 1);
+                        break;
                     case flot:
+                         resultado += lexer.lexeme + "\n";
+                        obs.Analisis("float", c.linea + 1);
+                        break;
                     case car:
-                    case cad:
-                    case si:
-                    case para:
-                    case entonces:
-                    case sn:
-                    case incremento:
-                        resultado += tokens + "\n";
-                        obs.Analisis("" + tokens, c.linea + 1);
+                         resultado += lexer.lexeme + "\n";
+                        obs.Analisis("char", c.linea + 1);
                         break;
                     case punto_coma:
+                         resultado += lexer.lexeme + "\n";
+                        obs.Analisis(";", c.linea + 1);
+                        break;
                     case mas:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("+", c.linea + 1);
+                        break;
                     case menos:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("-", c.linea + 1);
+                        break;
                     case parentesis_abre:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("(", c.linea + 1);
+                        break;
                     case parentesis_cierra:
-                    case corchete_abre:
-                    case corchete_cierra:
-                    case llave_abre:
-                    case llave_cierra:
+                         resultado += lexer.lexeme + "\n";
+                        obs.Analisis(")", c.linea + 1);
+                        break;
                     case igual:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("=", c.linea + 1);
+                        break;
                     case division:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("/", c.linea + 1);
+                        break;
                     case multiplicacion:
-                    case menor_que:
-                    case mayor_que:
-                    case negacion:
-                    case or:
-                    case and:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("*", c.linea + 1);
+                        break;
                     case coma:
-                    case punto:
-                    case dos_puntos:
-                    case comparacion:
-                    case modulo:
                         resultado += lexer.lexeme + "\n";
-                        obs.Analisis("" + lexer.lexeme, c.linea + 1);
-                        break;
-                    case menorigual:
-                        resultado += lexer.lexeme + "\n";
-                        obs.Analisis("N", c.linea + 1);
-                        break;
-                    case mayorigual:
-                        resultado += lexer.lexeme + "\n";
-                        obs.Analisis("M", c.linea + 1);
-                        break;
-                    case diferente_de:
-                        resultado += lexer.lexeme + "\n";
-                        obs.Analisis("D", c.linea + 1);
+                        obs.Analisis(",", c.linea + 1);
                         break;
                     default:
                         resultado += tokens + "\n";
@@ -764,58 +765,55 @@ public class ide extends javax.swing.JFrame {
                     case Error:
                         resultado += "Error lexico en la linea " + (c.linea + 1) + " con el lexema " + lexer.lexeme + "\n";
                         break;
-                    case ID:
-                    case Numero:
-                    case cadena:
-                    case caracter:
+                    case id:
+                        resultado += id + "\n";
+                        break;
+                    case num:
+                        resultado += num + "\n";
+                        break;
                     case ent:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("int", c.linea + 1);
+                        break;
                     case flot:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("float", c.linea + 1);
+                        break;
                     case car:
-                    case cad:
-                    case si:
-                    case para:
-                    case entonces:
-                    case sn:
-                    case incremento:
-                        resultado += tokens + "\n";
-                        obs.Analisis("" + tokens, c.linea + 1);
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("char", c.linea + 1);
                         break;
                     case punto_coma:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis(";", c.linea + 1);
+                        break;
                     case mas:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("+", c.linea + 1);
+                        break;
                     case menos:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("-", c.linea + 1);
+                        break;
                     case parentesis_abre:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("(", c.linea + 1);
+                        break;
                     case parentesis_cierra:
-                    case corchete_abre:
-                    case corchete_cierra:
-                    case llave_abre:
-                    case llave_cierra:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis(")", c.linea + 1);
+                        break;
                     case igual:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("=", c.linea + 1);
+                        break;
                     case division:
+                        resultado += lexer.lexeme + "\n";
+                        obs.Analisis("/", c.linea + 1);
+                        break;
                     case multiplicacion:
-                    case menor_que:
-                    case mayor_que:
-                    case negacion:
-                    case or:
-                    case and:
-                    case coma:
-                    case punto:
-                    case dos_puntos:
-                    case comparacion:
-                    case modulo:
                         resultado += lexer.lexeme + "\n";
-                        obs.Analisis("" + lexer.lexeme, c.linea + 1);
-                        break;
-                    case menorigual:
-                        resultado += lexer.lexeme + "\n";
-                        obs.Analisis("N", c.linea + 1);
-                        break;
-                    case mayorigual:
-                        resultado += lexer.lexeme + "\n";
-                        obs.Analisis("M", c.linea + 1);
-                        break;
-                    case diferente_de:
-                        resultado += lexer.lexeme + "\n";
-                        obs.Analisis("D", c.linea + 1);
+                        obs.Analisis("*", c.linea + 1);
                         break;
                     default:
                         resultado += tokens + "\n";

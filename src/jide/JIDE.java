@@ -17,15 +17,15 @@ public class JIDE {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String ruta="C:/Users/juanp/OneDrive/Documentos/Workspace/JIDE/src/jide/Lexer.flex";
-        ide IDE=new ide();
+        String ruta="C:/Users/crist/OneDrive/Documentos/NetBeansProjects/JIDEC/src/jide/Lexer.flex";
         
         generarLexer(ruta);
     }
     
     public static void generarLexer(String ruta){
-        File archivo=new File(ruta);
+        File archivo = new File(ruta);
         JFlex.Main.generate(archivo);
+        System.out.println(archivo);
     }
     
     
