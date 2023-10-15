@@ -99,12 +99,9 @@ public class Sintactico {
                     resultado += "Acepta :)";
                     return;
                 } else {
-                    System.out.println(accion);
                     String[] mitad = producciones[Integer.parseInt(accion.substring(1))].split(">");
                     String izquierda = mitad[0];
                     String derecha = mitad[1];
-                    System.out.println(izquierda);
-                    System.out.println(derecha);
                     String[] arrderecha = derecha.split(" ");
                     if (!arrderecha[0].equals("Vacia")) {
                         for (int i = 0; i < arrderecha.length * 2; i++) {
@@ -123,7 +120,7 @@ public class Sintactico {
                 }
 
             } else if (accion.equals("error")) {
-                error += "Cadena Inválida" + linea;
+                reportarError(Integer.parseInt(estado), linea);
                 return;
             }
         }
@@ -142,5 +139,21 @@ public class Sintactico {
 
     public String Resultado() {
         return resultado;
+    }
+
+    private void reportarError(int estadoIndex, int linea) {
+        StringBuilder esperados = new StringBuilder();
+
+        for (int i = 0; i < simbolos.length; i++) {
+            if (!tabla[estadoIndex][i].equals("error")) {
+                esperados.append(simbolos[i]).append(", ");
+            }
+        }
+
+        if (esperados.length() > 0) {
+            esperados.setLength(esperados.length() - 2);  // Remover la última coma y espacio.
+        }
+
+        error += "Error en línea " + linea + ". Token(s) esperado(s): " + esperados + ".\n";
     }
 }
