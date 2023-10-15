@@ -617,9 +617,11 @@ public class ide extends javax.swing.JFrame {
                         break;
                     case id:
                         resultado += id + "\n";
+                        obs.Analisis("id", c.linea + 1);
                         break;
                     case num:
                         resultado += num + "\n";
+                        obs.Analisis("num", c.linea + 1);
                         break;
                     case ent:
                          resultado += lexer.lexeme + "\n";
@@ -767,9 +769,11 @@ public class ide extends javax.swing.JFrame {
                         break;
                     case id:
                         resultado += id + "\n";
+                        obs.Analisis("id", c.linea + 1);
                         break;
                     case num:
                         resultado += num + "\n";
+                        obs.Analisis("num", c.linea + 1);
                         break;
                     case ent:
                         resultado += lexer.lexeme + "\n";
