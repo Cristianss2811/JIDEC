@@ -144,7 +144,7 @@ public class Sintactico {
     private void reportarError(int estadoIndex, int linea) {
         StringBuilder esperados = new StringBuilder();
 
-        for (int i = 0; i < simbolos.length; i++) {
+        for (int i = 0; i < 14; i++) {
             if (!tabla[estadoIndex][i].equals("error")) {
                 esperados.append(simbolos[i]).append(", ");
             }

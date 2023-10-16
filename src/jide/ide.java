@@ -592,14 +592,15 @@ public class ide extends javax.swing.JFrame {
                 //Se inicia un bucle while que continuará hasta que se hayan producido todos los tokens.
                 Tokens tokens = lexer.yylex();
                 //En cada iteración del bucle while, se llama al método yylex() del objeto Lexer para obtener el siguiente token.
-                if (tokens == null) {
-                    obs.Analisis("$", c.linea + 1);
+                if (tokens == null || !obs.error.equals("")) {
+                    if(obs.error.equals(""))
+                      obs.Analisis("$", c.linea + 1);
+                    else
+                        JTPError.setText(obs.error);
                     resultado += "$";
                     //Si se ha llegado al final del archivo, se agrega el carácter "$" a la cadena resultado y se muestra en el componente jTPLexico.
                     jTPLexico.setText(resultado);
                     JTPSintactico.setText(obs.Resultado());
-                    if(!obs.error.equals(""))
-                        JTPError.setText(obs.error);
                     return;
                 }
                 switch (tokens) {
