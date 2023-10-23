@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Sintactico {
 
-    private int is, itf;
+    private int is;
     private String resultado, estado, accion;
     public String error;
 
@@ -144,7 +144,7 @@ public class Sintactico {
     private void reportarError(int estadoIndex, int linea) {
         StringBuilder esperados = new StringBuilder();
 
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 15; i++) {
             if (!tabla[estadoIndex][i].equals("error")) {
                 esperados.append(simbolos[i]).append(", ");
             }
